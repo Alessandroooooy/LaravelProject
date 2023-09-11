@@ -1,0 +1,58 @@
+version: '3.1'
+
+services:
+  a_level_php:
+    build: ./php
+    container_name: a_level_php
+    volumes:
+      - ../serverr:/var/www/html
+    ports:
+      - '8055:80'
+    environment: 
+      APP_URL: 
+      WEB_DOCUMENT_ROOT: /var/www/html/public
+      WEB_DOCUMENT_INDEX: index.php
+      PHP_DATE_TIMEZONE: 'UTC + 5'
+      PHP_MEMORY_LIMIT: 2048M
+      PHP_UPLOAD_MAX_FILESIZE: 25M
+      PHP_POST_MAX_SIZE: 200M
+      PHP_DISPLAY_ERRORS: 1
+      XDEBUG_MODE: coverage
+      FPM_RLIMIT_CORE: 2   
+    depends_on:
+      - a_level_mysql
+
+  a_level_mysql:
+    build: ./mysql
+    container_name: a_level_mysql
+    volumes:
+      - ../a_level_mysql-db:/var/lib/mysql
+    ports:
+      - '8005:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: myapp
+      MYSQL_DATABASE: a_level
+      MYSQL_USER: myapp
+      MYSQL_PASSWORD: myapp
+      MYSQL_ROOT_HOST: '%'
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - '8006:80'
+    environment:
+      PMA_ARBITRARY: 0
+      PMA_HOST: 'a_level_mysql'
+      MYSQL_PASSWORD: 'myapp'
+    depends_on:
+      - a_level_mysql
+
+  redis_a_level:
+    container_name: redis_a_level
+    image: redis
+    volumes:
+      - ../redis:/data 
+
+volumes:
+  a_level_mysql-db:
