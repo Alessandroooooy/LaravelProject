@@ -14,12 +14,12 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(), // Создание заказа для пользователя
+            'user_id' => User::factory(),
             'total_price' => $this->faker->randomFloat(2, 10, 500),
         ];
     }
 
-    // Пример добавления случайных продуктов к заказу
+
     public function configure()
     {
         return $this->afterCreating(function (Order $order) {

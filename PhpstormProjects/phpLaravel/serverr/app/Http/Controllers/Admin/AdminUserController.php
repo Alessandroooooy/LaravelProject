@@ -14,5 +14,5 @@ class AdminUserController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
-    // Другие методы для административной логики, например, редактирование пользователей
+
 }

@@ -15,7 +15,7 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('title'); // Добавьте столбец 'title' в вашу миграцию
+            $table->string('title');
             $table->text('body');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');

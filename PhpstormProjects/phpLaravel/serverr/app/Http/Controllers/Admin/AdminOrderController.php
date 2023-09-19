@@ -13,5 +13,5 @@ class AdminOrderController extends Controller
         return view('admin.orders.index', compact('orders'));
     }
 
-    // Другие методы для административной логики, например, просмотр деталей заказа
+
 }

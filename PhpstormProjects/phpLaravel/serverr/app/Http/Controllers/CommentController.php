@@ -21,6 +21,6 @@ class CommentController extends Controller
 
     public function store(Request $request, Product $product)
     {
-        // Ваша бизнес-логика для сохранения комментария
+
     }
 }

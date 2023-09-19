@@ -15,9 +15,9 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->name,
             'description' => $this->faker->paragraph,
-            'price' => $this->faker->randomFloat(2, 10, 1000), // Пример случайной цены от 10 до 1000
-            'category_id' => Category::factory(), // Создание продукта с произвольной категорией
-            'image' => 'your-image-filename.jpg', // Укажите имя файла изображения
+            'price' => $this->faker->randomFloat(2, 10, 1000),
+            'category_id' => Category::factory(),
+            'image' => 'your-image-filename.jpg',
         ];
     }
 }

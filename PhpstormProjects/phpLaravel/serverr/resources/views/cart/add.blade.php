@@ -9,9 +9,9 @@
 
             <div class="form-group">
                 <label for="product">Select Product:</label>
-                <select name="product" id="product" class="form-control">
+                <select name="product_id" id="product_id" class="form-control">
                     @foreach ($products as $product)
-                        <option value="{{ $product->id }}">{{ $product->name }} - ${{ $product->price }}</option>
+                        <option value="{{ $product['id'] }}">{{ $product['name'] }} - ${{ $product['price'] }}</option>
                     @endforeach
                 </select>
             </div>
@@ -25,3 +25,5 @@
         </form>
     </div>
 @endsection
+
+

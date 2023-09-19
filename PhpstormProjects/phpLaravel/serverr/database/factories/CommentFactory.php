@@ -15,8 +15,8 @@ class CommentFactory extends Factory
     {
         return [
             'body' => $this->faker->paragraph,
-            'user_id' => User::factory(), // Создание комментария от пользователя
-            'product_id' => Product::factory(), // Создание комментария для продукта
+            'user_id' => User::factory(),
+            'product_id' => Product::factory(),
         ];
     }
 }

@@ -17,7 +17,6 @@ class Category extends Model
         'name',
     ];
 
-    // Пример связи с товарами
     public function products()
     {
         return $this->hasMany(Product::class);

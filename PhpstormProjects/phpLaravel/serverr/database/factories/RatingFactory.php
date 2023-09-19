@@ -14,7 +14,7 @@ class RatingFactory extends Factory
     public function definition()
     {
         return [
-            'rating' => $this->faker->numberBetween(1, 5), // Генерируйте рейтинг от 1 до 5 (вы можете настроить как вам нужно).
+            'rating' => $this->faker->numberBetween(1, 5),
             'user_id' => User::factory(),
             'product_id' => Product::factory(),
         ];

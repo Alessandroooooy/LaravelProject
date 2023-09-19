@@ -12,8 +12,7 @@ class RegisterController extends Controller
 {
     use RegistersUsers;
 
-    protected $redirectTo = '/home'; // Указать, куда пользователь будет перенаправлен после успешной регистрации.
-
+    protected $redirectTo = '/home';
     public function __construct()
     {
         $this->middleware('guest');
@@ -27,9 +26,10 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
+
     public function showRegistrationForm()
     {
-        return view('auth.register'); // Отображение формы регистрации
+        return view('auth.register');
     }
 
     protected function create(array $data)
@@ -40,6 +40,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
 
 
 }

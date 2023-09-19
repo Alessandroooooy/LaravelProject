@@ -15,7 +15,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
-            'password' => bcrypt('password'), // Вы можете установить желаемый пароль
+            'password' => bcrypt('password'),
         ];
     }
 }

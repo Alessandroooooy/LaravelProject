@@ -14,7 +14,7 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        $products = $category->products; // Получение продуктов для данной категории
+        $products = $category->products;
         return view('categories.show', compact('category', 'products'));
     }
 }

@@ -12,10 +12,9 @@
                 <p>Цена: ${{ $product->price }}</p>
                 <p>Доступное количество: {{ $product->stock_quantity }}</p>
                 <a href="{{ route('cart.add', ['product' => $product->id]) }}" class="btn btn-primary">Добавить в корзину</a>
-
-                <!-- Добавьте ссылку на страницу отзывов для данного товара -->
                 <a href="{{ route('reviews.index', ['product' => $product->id]) }}" class="btn btn-secondary">Отзывы</a>
             </div>
         </div>
     </div>
 @endsection
+

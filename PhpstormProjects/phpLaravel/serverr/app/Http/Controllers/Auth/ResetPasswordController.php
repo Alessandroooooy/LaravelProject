@@ -10,7 +10,7 @@ class ResetPasswordController extends Controller
 {
     use ResetsPasswords;
 
-    protected $redirectTo = '/home'; // Перенаправление после успешного сброса пароля
+    protected $redirectTo = '/home';
 
     public function __construct()
     {
@@ -19,16 +19,16 @@ class ResetPasswordController extends Controller
 
     public function showLinkRequestForm()
     {
-        return view('auth.passwords.email'); // Отображение формы запроса сброса пароля
+        return view('auth.passwords.email');
     }
 
     public function showResetForm(Request $request, $token = null)
     {
         return view('auth.passwords.reset')->with(
             ['token' => $token, 'email' => $request->email]
-        ); // Отображение формы сброса пароля
+        );
     }
 
-    // Вы можете дополнительно переопределить методы, если нужна дополнительная логика
+
 }
 

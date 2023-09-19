@@ -18,6 +18,7 @@ class CartController extends Controller
 
     public function showAddForm()
     {
+
         $products = Product::all();
 
         return view('cart.add', compact('products'));
@@ -32,25 +33,15 @@ class CartController extends Controller
 
         $cart = new Cart();
         $cart->add($productId, $productName, $quantity, $productPrice);
+        session()->flash('success', 'Товар добавлен в корзину.');
 
-        return redirect()->route('cart.index')->with('success', 'Товар добавлен в корзину.');
+        return redirect()->route('cart.index');
+
     }
 
-    public function checkout()
-    {
-        return view('cart.checkout');
-    }
 
-    public function confirm(Request $request)
-    {
-        // Здесь можно обработать оформление заказа и добавить логику сохранения заказа в базе данных.
-
-        $cart = new Cart();
-        $cart->destroy(); // Очистить корзину после успешного заказа.
-
-        return view('cart.success');
-    }
 }
+
 
 
 

@@ -18,7 +18,7 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    // Пример связи с товарами в заказе (многие ко многим)
+
     public function products()
     {
         return $this->belongsToMany(Product::class)->withPivot('quantity');

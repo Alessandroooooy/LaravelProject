@@ -8,7 +8,7 @@
         <a href="{{ route('products.index') }}" class="btn btn-primary btn-lg">Посмотреть товары</a>
     </div>
 
-    <!-- Секция с популярными товарами -->
+
     <section class="container my-5">
         <h2 class="text-center mb-4">Популярные товары</h2>
         <div class="row">
@@ -28,7 +28,7 @@
         </div>
     </section>
 
-    <!-- Дополнительная информация о магазине -->
+
     <section class="bg-light py-5">
         <div class="container">
             <h2 class="text-center">О нашем магазине</h2>

@@ -2,29 +2,28 @@
 
 namespace App\Models;
 
-
-use Illuminate\Support\Collection;
-
 class Cart
 {
-    private $items;
-
-    public function __construct()
-    {
-        $this->items = collect([]);
-    }
+    protected $items = [];
 
     public function add($productId, $productName, $quantity, $productPrice)
     {
-        $item = [
-            'id' => $productId,
-            'name' => $productName,
-            'qty' => $quantity,
-            'price' => $productPrice,
-            'options' => [],
-        ];
 
-        $this->items->push($item);
+        $key = md5($productId);
+
+
+        if (array_key_exists($key, $this->items)) {
+
+            $this->items[$key]['quantity'] += $quantity;
+        } else {
+
+            $this->items[$key] = [
+                'product_id' => $productId,
+                'product_name' => $productName,
+                'quantity' => $quantity,
+                'product_price' => $productPrice,
+            ];
+        }
     }
 
     public function content()
@@ -32,11 +31,5 @@ class Cart
         return $this->items;
     }
 
-    public function destroy()
-    {
-        $this->items = collect([]);
-    }
-
-    // Другие методы для работы с корзиной, если необходимо
 }
 

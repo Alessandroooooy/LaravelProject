@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use TCG\Voyager\Http\Controllers\Controller;
 
 
@@ -13,19 +14,19 @@ use TCG\Voyager\Http\Controllers\Controller;
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
-    use ThrottlesLogins; // Добавляем трейт ThrottlesLogins
+    use ThrottlesLogins;
 
-    protected $maxAttempts = 5; // Количество попыток
-    protected $decayMinutes = 1; // Время в минутах
+    protected $maxAttempts = 5;
+    protected $decayMinutes = 1;
 
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-    // Переопределяем метод credentials
+
     protected function credentials(Request $request)
     {
         return $request->only($this->username(), 'password');
@@ -33,7 +34,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.login'); // Отображение формы входа
+        return view('auth.login');
     }
 
     public function logout(Request $request)
@@ -42,4 +43,10 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        return Redirect::route('products.index');
+    }
+
 }

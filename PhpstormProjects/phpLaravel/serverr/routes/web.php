@@ -31,13 +31,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 
-Route::get('/login', [LoginController::class,'showLoginForm' ])->name('login');
-Route::post('/login', [LoginController::class,'login']);
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout'); // Для GET-запроса
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // Для POST-запроса
+Route::group(['middleware' => 'web'], function () {
+    // Маршруты для входа и выхода
+    Route::get('/login', [LoginController::class,'showLoginForm' ])->name('login');
+    Route::post('/login', [LoginController::class,'login']);
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // Для POST-запрос
+});
+
 
 
 Route::get('/register', [RegisterController::class,'showRegistrationForm'])->name('register');
@@ -51,7 +55,7 @@ Route::post('/password/reset', [ResetPasswordController::class,'reset'])->name('
 
 
 // Маршруты для отображения главной страницы и каталога товаров
-Route::get('/', [ProductController::class, 'index'])->name('home');
+
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
@@ -64,11 +68,6 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/cart/add', [CartController::class, 'showAddForm'])->name('cart.showAddForm');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
-Route::post('/cart/confirm', [CartController::class, 'confirm'])->name('cart.confirm');
-
-
-
-
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/checkout/confirm', [CheckoutController::class, 'confirm'])->name('checkout.confirm');
@@ -85,11 +84,9 @@ Route::get('/order/thank-you', function () {
 //});
 
 // Маршруты для личного кабинета пользователя
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
-    Route::get('/dashboard/orders', [UserController::class, 'orders'])->name('user.orders');
-    Route::get('/dashboard/settings', [UserController::class, 'settings'])->name('user.settings');
-    Route::get('/dashboard/password', [UserController::class, 'password'])->name('user.password');
     // Другие маршруты для личного кабинета
 });
 

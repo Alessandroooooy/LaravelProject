@@ -17,10 +17,10 @@
                 <tbody>
                 @foreach($cartItems as $item)
                     <tr>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->quantity }}</td>
-                        <td>${{ $item->price }}</td>
-                        <td>${{ $item->total }}</td>
+                        <td>{{ $item['name'] }}</td>
+                        <td>{{ $item['quantity'] }}</td>
+                        <td>${{ $item['price'] }}</td>
+                        <td>${{ $item['total'] }}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -30,10 +30,15 @@
                 <p>Total: ${{ Cart::subtotal() }}</p>
                 <a href="{{ route('cart.checkout') }}" class="btn btn-primary">Proceed to Checkout</a>
             </div>
+
+        @endif
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
         @else
-            <p>Your cart is empty.</p>
+            <p class="alert alert-info">Your cart is empty.</p>
         @endif
     </div>
 @endsection
-
-

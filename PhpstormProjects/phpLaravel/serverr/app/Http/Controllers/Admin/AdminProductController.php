@@ -13,5 +13,5 @@ class AdminProductController extends Controller
         return view('admin.products.index', compact('products'));
     }
 
-    // Другие методы для административной логики, например, создание и редактирование товаров
+
 }

@@ -9,13 +9,13 @@ class RatingController extends Controller
 {
     public function create()
     {
-        // Метод для отображения формы создания рейтинга
+
         return view('ratings.create');
     }
 
     public function store(Request $request)
     {
-        // Метод для сохранения нового рейтинга
+
         $validatedData = $request->validate([
             'stars' => 'required|integer|min:1|max:5',
             'product_id' => 'required',
@@ -29,13 +29,13 @@ class RatingController extends Controller
 
     public function edit(Rating $rating)
     {
-        // Метод для отображения формы редактирования рейтинга
+
         return view('ratings.edit', compact('rating'));
     }
 
     public function update(Request $request, Rating $rating)
     {
-        // Метод для обновления рейтинга
+
         $validatedData = $request->validate([
             'stars' => 'required|integer|min:1|max:5',
         ]);
@@ -48,7 +48,7 @@ class RatingController extends Controller
 
     public function destroy(Rating $rating)
     {
-        // Метод для удаления рейтинга
+
         $product_id = $rating->product_id;
         $rating->delete();
 

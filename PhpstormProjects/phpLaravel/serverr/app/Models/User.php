@@ -22,22 +22,19 @@ class User extends \TCG\Voyager\Models\User implements VoyagerUser
         'password', 'remember_token',
     ];
 
-// Определение отношения с заказами пользователя
+
     public function orders()
     {
         return $this->hasMany(Order::class);
     }
 
-// Определение отношения с ролями пользователя
+
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
     }
 
-// Метод для назначения роли пользователю
-    public function assignRole($role)
-    {
-        return $this->roles()->sync($role, false);
-    }
+
+
 
 }

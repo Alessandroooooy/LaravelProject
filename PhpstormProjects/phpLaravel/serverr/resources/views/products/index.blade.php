@@ -13,7 +13,6 @@
                             <p class="card-text">{{ $product->description }}</p>
                             <p class="card-text">Цена: ${{ $product->price }}</p>
                             <a href="{{ route('cart.add', ['product' => $product->id]) }}" class="btn btn-primary">Добавить в корзину</a>
-                            <!-- Добавьте ссылку на страницу отзывов для данного товара -->
                             <a href="{{ route('reviews.index', ['product' => $product->id]) }}" class="btn btn-secondary">Отзывы</a>
                         </div>
                     </div>
